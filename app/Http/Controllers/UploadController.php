@@ -29,8 +29,27 @@ class UploadController extends Controller
       echo 'Uploaded';
     }
   }
+
   public function getTestpackage(){
       $img = Image::make('images/uploads/Koala.jpg')->resize(300, 200);
       return $img->response('jpg');
   }
+
+  public function ajaxForm()
+  {
+    return view('ajax_multi_upload.index');
+  }
+
+  public function ajaxUpload(Request $request)
+  {
+    if ($request->images) {
+      $images = $request->images;
+      $total = $request->TotalImages;
+      $imagesName = $images->getClientOriginalName();
+      $randonName = rand(1, 200);
+      $images->move(public_path('/images/test'), $randonName . '.jpg');
+      return response()->json($randonName);
+    }
+  }
+
 }
