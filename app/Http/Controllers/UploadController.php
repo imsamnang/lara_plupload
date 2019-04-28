@@ -23,9 +23,9 @@ class UploadController extends Controller
   public function postAction(Request $request){
    if($request->exists('btn-multiupload')){
       $file = $request->file('file');
-      $path = 'images/uploads';
+      $path = 'images/uploads/';
       $filename = $file->getClientOriginalName();
-      $file->move('images/uploads',$file->getClientOriginalName());
+      $file->move('images/uploads/plupload/',$file->getClientOriginalName());
       $image = new Image;
       $image->image_name = $filename;
       $image->save();

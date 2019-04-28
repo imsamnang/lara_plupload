@@ -14,7 +14,7 @@
       padding: 10px;
     }
     #image_preview img{
-      width: 200px;
+      width: 100px;
       padding: 5px;
     }
   </style>

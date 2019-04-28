@@ -25,6 +25,17 @@
       background: #e8e8e8 none repeat scroll 0 0;
       padding: 15px;
     }
+    input[type=file]{
+      display: inline;
+    }
+    #image_preview{
+      border: 1px solid black;
+      padding: 10px;
+    }
+    #image_preview img{
+      width: 100px;
+      padding: 5px;
+    }    
   </style>
 
 </head>
@@ -61,11 +72,11 @@
       </div>
       <div class="col-md-5">
         <strong>Image:</strong>
-        <input type="file" name="image" class="form-control">
+        <input type="file" name="image[]" id="uploadFile" class="form-control" multiple="true">
       </div>
       <div class="col-md-2">
         <br/>
-        <button type="submit" class="btn btn-success">Upload</button>
+        <button type="submit" class="btn btn-success" id="btn-upload">Upload</button>
       </div>
     </div>
   </form> 
@@ -74,33 +85,53 @@
     <div class='list-group gallery'>
       @if($images->count())
       @foreach($images as $image)
-      <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3'>
-        <a class="thumbnail fancybox" rel="ligthbox" href="/images/{{ $image->image }}">
-          <img class="img-responsive" alt="" src="/images/{{ $image->image }}" />
-          <div class='text-center'>
-            <small class='text-muted'>{{ $image->title }}</small>
-          </div> <!-- text-center / end -->
+      <div class='col-sm-2 col-xs-2 col-md-2 col-lg-2'>
+        <a class="thumbnail fancybox" rel="ligthbox" href="/images/gallery/{{ $image->image }}">
+          <img class="img-responsive" alt="{{ $image->image }}" src="/images/gallery/{{ $image->image }}" />
         </a>
         <form action="{{ url('image-gallery',$image->id) }}" method="POST">
           <input type="hidden" name="_method" value="delete">
           {!! csrf_field() !!}
           <button type="submit" class="close-icon btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
         </form>
-      </div> <!-- col-6 / end -->
+      </div> <!-- col-6 / end -->     
       @endforeach
       @endif
     </div> <!-- list-group / end -->
+  <div id="image_preview"></div>    
   </div> <!-- row / end -->
-
 </div> <!-- container / end -->
 
 </body>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $(".fancybox").fancybox({
-            openEffect: "none",
-            closeEffect: "none"
-        });
+  $(document).ready(function(){
+    $('#image_preview').hide();
+    $(".fancybox").fancybox({
+        openEffect: "none",
+        closeEffect: "none"
     });
+  });
+</script>
+
+<script type="text/javascript">
+  $("#uploadFile").change(function(){
+    $('#image_preview').show();
+    $('#image_preview').html("");
+    var total_file=document.getElementById("uploadFile").files.length;
+    for(var i=0;i<total_file;i++)
+    {
+      // $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+      $('#image_preview').append("<a class='thumbnail fancybox' rel='ligthbox' href='"+URL.createObjectURL(event.target.files[i])+"'");
+      $('#image_preview').append("<img class='img-responsive' src='"+URL.createObjectURL(event.target.files[i])+"' />");
+      $('#image_preview').append("</a>");
+      $('#image_preview').append("<button type='submit' class='close-icon btn btn-danger'><i class='glyphicon glyphicon-remove'></i></button>");
+    }
+  });
+
+  $('#btn-upload').on('click',function(){
+    $('#image_preview').hide();
+  });
 </script>
 </html>
+
+

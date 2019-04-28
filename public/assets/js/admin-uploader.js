@@ -2,13 +2,13 @@ var uploader = new plupload.Uploader({
     runtimes : 'html5,flash,silverlight,html4',
     browse_button : 'btn-select', // Set the button for selecting pictures
     container: document.getElementById('container'), // Set the ID that covers the image selection button and the upload button
-    url : '/action', // Set the path to send to upload pictures
+    url : '/', // Set the path to send to upload pictures
 		flash_swf_url : '/assets/lib/plupload/js/Moxie.swf',
 		silverlight_xap_url : '/assets/lib/plupload/js/Moxie.xap',
     filters : {
         max_file_size : '10mb',
         mime_types: [
-            {title : "Image files", extensions : "jpg,gif,png"},
+            {title : "Image files", extensions : "jpg,gif,png,jpeg,bmp,svg"},
             {title : "Zip files", extensions : "zip"}
         ]
     },

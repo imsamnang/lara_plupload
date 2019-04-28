@@ -1,0 +1,153 @@
+#plupload #multi-upload {
+    background: #f4f4f4;
+    border-radius: 3px;
+    border: 1px dashed #e1e1e1
+}
+
+#plupload #multi-upload .list-image {
+    overflow: hidden;
+    margin-bottom: 0;
+    padding: 8px
+}
+
+#plupload #multi-upload .list-image li {
+    float: left;
+    width: 25%;
+    position: relative
+}
+
+#plupload #multi-upload .list-image .item {
+    position: relative;
+    text-align: center;
+    margin: 8px
+}
+
+#plupload #multi-upload .list-image li .btn-browse,
+#multi-upload li .img-view,
+#multi-upload .loading {
+    background: #fff;
+    border-radius: 3px;
+    position: relative;
+    height: 100px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    overflow: hidden
+}
+
+#plupload #multi-upload .list-image li .btn-browse:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff url(../img/add_blue.png) no-repeat center
+}
+
+#plupload #multi-upload .list-image li:first-child .btn-browse:after {
+    background: #fff url(../img/pl_add_photo_blue.png) no-repeat center
+}
+
+#multi-upload .total_status {
+    background: #fff;
+    text-align: right;
+    padding: 4px 12px;
+    font-size: 13px;
+    color: #555
+}
+
+#multi-upload .delete,
+#multi-upload .image_rotate {
+    position: absolute;
+    top: -4px;
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 9
+}
+
+#multi-upload .delete {
+    right: -3px
+}
+
+#multi-upload .image_rotate {
+    left: -3px
+}
+
+#multi-upload .delete:after,
+#multi-upload .image_rotate:after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+#multi-upload .delete:after {
+    background: #fff url(../img/close.png) no-repeat center;
+    background-size: contain
+}
+
+#multi-upload .image_rotate:after {
+    background: #fff url(../img/rotate.png) no-repeat center;
+    background-size: contain
+}
+
+.post_form label.error {
+    color: #ff3500;
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 6px;
+    display: block
+}
+
+#drop-image {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 9;
+    background: #e6e6e6;
+    text-align: center
+}
+
+#drop-image .image_placeholder {
+    display: block;
+    margin: 60px auto 15px;
+    width: 68px;
+    height: 68px;
+    background: url(../img/image_placeholder.png) no-repeat center
+}
+
+#drop-image {
+    border: 2px dashed #028dcf;
+    border-radius: 3px;
+    display: none
+}
+
+.drag-over #drop-image {
+    display: block
+}
+
+#drop-image p {
+    font-size: 18px;
+    color: #555
+}
+
+.post_form {
+    position: relative
+}
+
+.post_form .form-group label {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 5px
+}
+
