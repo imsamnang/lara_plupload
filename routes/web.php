@@ -26,5 +26,4 @@ Route::get('uploads', 'ImageUploadController@upload');
 Route::post('upload/store', 'ImageUploadController@store')->name('upload.store');
 Route::post('delete', 'ImageUploadController@delete');
 
-
-
+Route::resource('image','ImageCrudController');
