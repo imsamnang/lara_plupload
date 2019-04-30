@@ -12,15 +12,16 @@
 </head>
 <body>
 <div class="container">
-  <form action="{{route('image.store')}}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+  <form action="{{route('image.update',$images[0]->product_id)}}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
     {{csrf_field()}}
+    {{method_field('PUT')}}
     <div class="form-group">
     <label for="ad_text" class="col control-label">Ad Photos <i class="red">*</i></label>
     <div id="plupload" class="col-8">
       <div class="row plupload_block">
         <div class="pl fleft col-12">
         <!-- Code Begins -->
-          <input style="display:none;" type="file" name="imageGalleries[]" id="vpb-data-file" onchange="vpb_image_preview(this)" multiple="multiple" />
+          <input style="display:none;" type="file" name="imageGalleries[]" id="vpb-data-file" onchange="vpb_image_preview(this)" multiple="multiple" value="{{$images[0]->image}}" />
           <div align="center" style="width:300px;">
             <!-- Browse File Button -->
             <span class="vpb_browse_file" onclick="document.getElementById('vpb-data-file').click();"></span>
@@ -31,6 +32,8 @@
           @if (isset($images))
             @foreach ($images as $image)
               <div id="selector_{{$image->id}}" class="vpb_wrapper">
+                <input style="display:none;" type="file" name="imageGalleriesEdit" id="vpb-data-file" onchange="vpb_image_preview(this)" 
+                multiple="multiple" value="{{$image->image}}" />
                 <img class="vpb_image_style" class="img-thumbnail" src="{{asset('uploads/Image_Crud/'.$image->image)}}"
                 alt="{{$image->image}}" /><br />
                 <a style="cursor:pointer;padding-top:5px;" title="Click here to remove"
@@ -45,7 +48,7 @@
     </div>
   </div>
     <div class="form-group">
-      <input type="submit" name="btnsave" value="Upload" class="btn btn-primary">
+      <input type="submit" name="btnsave" value="Update" class="btn btn-warning">
     </div>
 </form>
 </div>
